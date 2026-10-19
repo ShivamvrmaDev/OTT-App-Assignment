@@ -15,23 +15,16 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.OttVideoPlayer">
 
-        <!-- Splash Screen Activity -->
         <activity
-            android:name=".presentation.ui.splash.SplashActivity"
+            android:name=".presentation.MainActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:exported="true"
-            android:theme="@style/Theme.OttVideoPlayer">
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Main Activity -->
-        <activity
-            android:name=".presentation.MainActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
 
     </application>
 
