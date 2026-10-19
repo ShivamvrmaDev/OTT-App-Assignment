@@ -5,14 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.OptIn
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.media3.common.MediaItem
-import androidx.media3.common.util.UnstableApi
-import androidx.media3.datasource.DefaultHttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import com.shivam.ottvideoplayer.databinding.FragmentVideoPlayerBinding
 import com.shivam.ottvideoplayer.presentation.player.PlayerEventHandler
 import com.shivam.ottvideoplayer.presentation.ui.utils.MyViewModel
@@ -50,7 +46,6 @@ class VideoPlayerFrag : Fragment() {
         initPlayer()
     }
 
-    @OptIn(UnstableApi::class)
     private fun initPlayer() {
         val selectedItem = viewModel.selectedItem.value
         val videoUrl = selectedItem?.videoUrl
@@ -65,17 +60,7 @@ class VideoPlayerFrag : Fragment() {
             return
         }
 
-        val httpDataSourceFactory = DefaultHttpDataSource.Factory()
-            .setUserAgent("Mozilla/5.0 (Linux; Android 11; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36")
-            .setAllowCrossProtocolRedirects(true)
-
-        val mediaSourceFactory = DefaultMediaSourceFactory(requireContext())
-            .setDataSourceFactory(httpDataSourceFactory)
-
-        player = ExoPlayer.Builder(requireContext())
-            .setMediaSourceFactory(mediaSourceFactory)
-            .build()
-
+        player = ExoPlayer.Builder(requireContext()).build()
         binding.playerView.player = player
 
         playerEventHandler = PlayerEventHandler { playerEvent ->

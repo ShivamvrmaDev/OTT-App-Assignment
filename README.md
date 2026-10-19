@@ -1,167 +1,62 @@
-# OTT Video Player - Android Application
+# OTT Video Player Application
 
-An OTT-style Android application built with **Kotlin**, **Clean Architecture**, **MVVM**, **Android Jetpack**, **Media3 / ExoPlayer**, and **XML Layouts**.
-
----
-
-## 📥 APK Download for Testing
-
-You can download and test the pre-compiled Debug APK directly from this repository:
-- 📲 **[Download Test APK (app-debug.apk)](apk/app-debug.apk)**
+A native Android application built as part of the OTT Developer Technical Assignment. The app demonstrates clean architecture, MVVM, Jetpack components, and Media3 ExoPlayer for video streaming.
 
 ---
 
-## 📱 Application Features
+## APK Build
 
-- **OTT Home Screen**:
-  - **Hero Banner**: Featured title with background image, title, description, and "Watch Now" / "View Details" CTA.
-  - **Content Rails**: Multiple horizontally scrollable `RecyclerView` rails ("Trending Now", "Recommended for You").
-  - **Dynamic Population**: Populated asynchronously from mock JSON via Clean Architecture layers.
-- **Content Detail Screen**:
-  - Displays selected item's high-res thumbnail, title, description, and a prominent "Watch Now" button launching playback.
-- **Video Player**:
-  - Built with **Android Media3 / ExoPlayer** supporting Play, Pause, Seek, and Progress tracking.
-  - Full lifecycle management (`onPause`, `onResume`, `onStop`, `onDestroyView`).
-  - Configured with `DefaultHttpDataSource.Factory` User-Agent headers to prevent HTTP 403 network errors.
-- **Player Events & Analytics Pipeline**:
-  - Full separation of concerns for tracking player events (`Player` ➔ `PlayerEventHandler` ➔ `ViewModel` ➔ `AnalyticsRepository` ➔ Logcat).
-  - Captures and logs 5 key player events:
-    - `PLAYER_READY`
-    - `PLAYER_STARTED`
-    - `PLAYER_PAUSED`
-    - `PLAYER_SEEKED`
-    - `PLAYER_ERROR`
+You can download the test build directly from the repository:
+- **[Download app-debug.apk](apk/app-debug.apk)**
 
 ---
 
-## 📐 Architecture Overview
+## Features
 
-The app strictly adheres to **Clean Architecture** and **MVVM** principles with three distinct layers:
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     Presentation Layer                      │
-│   HomeFragment / ItemDetailsFrag / VideoPlayerFrag          │
-│   MyViewModel / VideoPlayerViewModel                        │
-│   UiState<T> (Loading, Success, Empty, Error)               │
-│   PlayerEventHandler                                        │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────────┐
-│                        Domain Layer                         │
-│   DomainItem / DomainCategory / DomainOTTDataModel          │
-│   PlayerEvent (Sealed Class)                                │
-│   GetHomeContentUseCase / LogPlayerEventUseCase             │
-│   DomainRepository / AnalyticsRepository (Interfaces)       │
-└──────────────────────────────▲──────────────────────────────┘
-                               │
-                               │ Implements
-┌──────────────────────────────┴──────────────────────────────┐
-│                         Data Layer                          │
-│   DomainRepoImpl / AnalyticsRepoImpl                        │
-│   ContentDataSource (Interface) / LocalDataSource           │
-│   OTTDataDto / CategoryDto / ItemDto                        │
-│   OTTDataMapper (toDomain())                                │
-└─────────────────────────────────────────────────────────────┘
-```
+- **Home Screen**: Features a Hero Banner at the top and content rails ("Trending Now", "Recommended for You") using horizontal `RecyclerView`s. Data is loaded dynamically from mock JSON asset files via the data layer.
+- **Detail Screen**: Shows item image, title, description, and a watch CTA that launches the player.
+- **Video Player**: Uses Media3 ExoPlayer for video playback. Supports playback controls, progress tracking, and handles lifecycle events properly (`onPause`, `onResume`, `onStop`).
+- **Player Events**: Captures 5 player callbacks (`PLAYER_READY`, `PLAYER_STARTED`, `PLAYER_PAUSED`, `PLAYER_SEEKED`, `PLAYER_ERROR`) using a dedicated `PlayerEventHandler` and logs them cleanly via ViewModel and Analytics Repository.
 
 ---
 
-## 📂 Project Structure
+## Architecture & Tech Stack
 
-```
-com.shivam.ottvideoplayer/
-├── data/
-│   ├── data_resource/
-│   │   ├── ContentDataSource.kt        // Data Source interface
-│   │   └── LocalDataSource.kt          // Mock JSON Data Source
-│   ├── model/                          // DTOs & Mappers
-│   │   ├── Item.kt
-│   │   ├── Category.kt
-│   │   └── OTTDataModelClass.kt
-│   └── repostiory/                     // Repository implementations
-│       ├── DomainRepoImpl.kt
-│       └── AnalyticsRepoImpl.kt
-├── domain/
-│   ├── domain_model/                   // Pure Kotlin Domain Entities
-│   │   ├── DomainItem.kt
-│   │   ├── DomainCategory.kt
-│   │   ├── DomainOTTDataModel.kt
-│   │   └── PlayerEvent.kt
-│   ├── repostiory/                     // Repository Contracts
-│   │   ├── DomainRepository.kt
-│   │   └── AnalyticsRepository.kt
-│   └── use_case/                       // Business Use Cases
-│       ├── GetHomeContentUseCase.kt
-│       └── LogPlayerEventUseCase.kt
-└── presentation/
-    ├── common/
-    │   └── UiState.kt                  // UI State Wrapper (Loading, Success, Error, Empty)
-    ├── player/
-    │   └── PlayerEventHandler.kt       // Media3 Listener & Event Translator
-    ├── ui/
-    │   ├── frgaments/
-    │   │   ├── HomeFrag.kt
-    │   │   ├── ItemDetailsFrag.kt
-    │   │   └── VideoPlayerFrag.kt
-    │   └── utils/
-    │       ├── DataAdapter.kt          // ListAdapter + DiffUtil for Content Rails
-    │       └── MyViewModel.kt          // ViewModel exposing StateFlow
-    └── viewmodel/
-        └── VideoPlayerViewModel.kt
-```
+The project follows Clean Architecture with MVVM:
+
+- **Presentation Layer**: ViewModels, Fragments (`HomeFragment`, `ItemDetailsFrag`, `VideoPlayerFrag`), `StateFlow` for UI state, and ViewBinding.
+- **Domain Layer**: Pure Kotlin models (`DomainItem`, `DomainCategory`, `PlayerEvent`), repository contracts, and Use Cases (`GetHomeContentUseCase`, `LogPlayerEventUseCase`).
+- **Data Layer**: DTO models (`OTTDataModelClass`), `LocalDataSource` reading mock JSON, mappers, and repository implementations (`DomainRepoImpl`, `AnalyticsRepoImpl`).
+
+### Tech Stack
+- **Kotlin**
+- **XML Layouts** (ConstraintLayout, Material Components)
+- **Jetpack Navigation**
+- **Coroutines & StateFlow**
+- **Android Media3 / ExoPlayer**
+- **Picasso** (Image loading)
+- **Gson** (JSON parsing)
 
 ---
 
-## 🛠️ Tech Stack & Libraries Used
+## Replacing Mock Data with Real API
 
-- **Language**: Kotlin
-- **UI Framework**: XML Layouts (ConstraintLayout, ScrollView, Material3 Components)
-- **Architecture**: Clean Architecture + MVVM
-- **Jetpack Components**:
-  - `ViewModel` & `AndroidViewModel`
-  - `Navigation Component` (`NavHostFragment`, `findNavController()`)
-  - `ViewBinding`
-  - `Lifecycle` & `lifecycleScope`
-- **Asynchronous Flow**: Kotlin Coroutines & `StateFlow`
-- **Video Player**: Android `Media3 / ExoPlayer` (`1.11.1`) & `PlayerView`
-- **Image Loading**: Picasso (`2.8`)
-- **JSON Parsing**: Gson (`2.10.1`)
+The data layer uses an interface abstraction (`ContentDataSource`):
 
----
+- `ContentDataSource`
+  - `LocalDataSource` (Reads local asset JSON)
+  - `RemoteDataSource` (Can be implemented with Retrofit/Ktor)
 
-## 🎬 Player Event Handling Approach
+To swap the mock data with a live backend API:
+1. Implement `ContentDataSource` with Retrofit in a new `RemoteDataSource` class.
+2. Inject/pass `RemoteDataSource` into `DomainRepoImpl`.
 
-Player event tracking is decoupled from Fragments using a clean **event-driven pipeline**:
-
-1. **`PlayerEventHandler`**: Implements `Player.Listener` on Media3 ExoPlayer. It monitors playback state changes, pause/play toggles, seek discontinuities, buffering, and errors.
-2. **`PlayerEvent`**: Sealed class representing domain player events (`PlayerReady`, `PlaybackStarted`, `PlaybackPaused`, `SeekPerformed`, `PlaybackError`).
-3. **`VideoPlayerViewModel`**: Receives `PlayerEvent` items and delegates them to `LogPlayerEventUseCase`.
-4. **`AnalyticsRepository` (`AnalyticsRepoImpl`)**: Formats and logs the event cleanly to Logcat (`[PLAYER_EVENT_ANALYTICS] -> PLAYER_STARTED`).
+No changes are required in ViewModels, UseCases, Domain models, or UI code.
 
 ---
 
-## 🔄 API-Ready Design (Replacing Mock JSON with Real API)
+## How to Build and Run
 
-The data layer is designed around the `ContentDataSource` abstraction:
-
-```
-ContentDataSource (Interface)
-     ├── LocalDataSource (Current: Reads JSON from assets)
-     └── RemoteDataSource (Future: Retrofit / Ktor API calls)
-```
-
-To replace the mock data source with a real backend API in the future:
-1. Create a `RemoteDataSource : ContentDataSource` using Retrofit.
-2. Pass `RemoteDataSource` into `DomainRepoImpl`.
-3. **Zero changes** are required in ViewModels, UseCases, Domain Models, or UI Fragments!
-
----
-
-## 🚀 How to Build and Run
-
-1. Open the project in **Android Studio** (Hedgehog / Iguana / Jellyfish or newer).
-2. Sync the project with Gradle files (`File -> Sync Project with Gradle Files`).
-3. Connect an Android Emulator or physical device (Android 7.0 / API 24+ recommended).
-4. Run the app (`Shift + F10` or click **Run 'app'**).
+1. Open project in **Android Studio**.
+2. Sync Gradle files.
+3. Select `app` run configuration and deploy to an emulator or physical device.
