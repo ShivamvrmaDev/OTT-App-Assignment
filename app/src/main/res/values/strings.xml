@@ -3,6 +3,4 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="watch_now">Watch Now</string>
     <string name="no_content_available">No content available at the moment.</string>
-    <string name="landscape_mode">Landscape Mode</string>
-    <string name="portrait_mode">Portrait Mode</string>
 </resources>

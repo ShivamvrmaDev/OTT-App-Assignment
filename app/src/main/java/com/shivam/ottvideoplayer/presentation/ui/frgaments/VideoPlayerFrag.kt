@@ -1,15 +1,11 @@
 package com.shivam.ottvideoplayer.presentation.ui.frgaments
 
-import android.content.pm.ActivityInfo
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.annotation.OptIn
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.media3.common.MediaItem
@@ -17,7 +13,6 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.DefaultHttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
-import com.shivam.ottvideoplayer.R
 import com.shivam.ottvideoplayer.databinding.FragmentVideoPlayerBinding
 import com.shivam.ottvideoplayer.presentation.player.PlayerEventHandler
 import com.shivam.ottvideoplayer.presentation.ui.utils.MyViewModel
@@ -53,25 +48,6 @@ class VideoPlayerFrag : Fragment() {
             playWhenReadyState = savedInstanceState.getBoolean(KEY_PLAY_WHEN_READY, true)
         }
         initPlayer()
-        setupOrientationControls()
-        setupBackPressHandler()
-    }
-
-    private fun setupBackPressHandler() {
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    val isLandscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-                    if (isLandscape) {
-                        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-                    } else {
-                        isEnabled = false
-                        requireActivity().onBackPressedDispatcher.onBackPressed()
-                    }
-                }
-            }
-        )
     }
 
     @OptIn(UnstableApi::class)
@@ -119,60 +95,6 @@ class VideoPlayerFrag : Fragment() {
 
         player.prepare()
         player.playWhenReady = playWhenReadyState
-    }
-
-    private fun setupOrientationControls() {
-        val toggleListener = View.OnClickListener {
-            toggleOrientation()
-        }
-        binding.btnOrientation.setOnClickListener(toggleListener)
-        binding.btnSwitchMode.setOnClickListener(toggleListener)
-
-        updateOrientationUI()
-    }
-
-    private fun toggleOrientation() {
-        val currentOrientation = resources.configuration.orientation
-        activity?.requestedOrientation = if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        } else {
-            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-        }
-    }
-
-    private fun updateOrientationUI() {
-        val isLandscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-
-        if (isLandscape) {
-            binding.btnOrientation.setIconResource(R.drawable.ic_fullscreen_exit)
-            binding.btnSwitchMode.setIconResource(R.drawable.ic_fullscreen_exit)
-            binding.btnSwitchMode.text = getString(R.string.portrait_mode)
-            binding.cvPlayingInfo.visibility = View.GONE
-
-            val params = binding.cvPlayerFrame.layoutParams as ConstraintLayout.LayoutParams
-            params.height = ConstraintLayout.LayoutParams.MATCH_PARENT
-            params.setMargins(0, 0, 0, 0)
-            binding.cvPlayerFrame.layoutParams = params
-            binding.cvPlayerFrame.radius = 0f
-        } else {
-            binding.btnOrientation.setIconResource(R.drawable.ic_fullscreen)
-            binding.btnSwitchMode.setIconResource(R.drawable.ic_fullscreen)
-            binding.btnSwitchMode.text = getString(R.string.landscape_mode)
-            binding.cvPlayingInfo.visibility = View.VISIBLE
-
-            val params = binding.cvPlayerFrame.layoutParams as ConstraintLayout.LayoutParams
-            val marginInPx = (12 * resources.displayMetrics.density).toInt()
-            val heightInPx = (250 * resources.displayMetrics.density).toInt()
-            params.height = heightInPx
-            params.setMargins(marginInPx, marginInPx, marginInPx, marginInPx)
-            binding.cvPlayerFrame.layoutParams = params
-            binding.cvPlayerFrame.radius = 12 * resources.displayMetrics.density
-        }
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        updateOrientationUI()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
