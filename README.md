@@ -4,6 +4,13 @@ An OTT-style Android application built with **Kotlin**, **Clean Architecture**, 
 
 ---
 
+## 📥 APK Download for Testing
+
+You can download and test the pre-compiled Debug APK directly from this repository:
+- 📲 **[Download Test APK (app-debug.apk)](apk/app-debug.apk)**
+
+---
+
 ## 📱 Application Features
 
 - **OTT Home Screen**:
