@@ -1,0 +1,120 @@
+{
+  "heroBanner": {
+    "id": "movie_001",
+    "title": "Big Buck Bunny",
+    "description": "A public sample film for testing video playback.",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=700&q=80",
+    "bannerUrl": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=80",
+    "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+  },
+  "categories": [
+    {
+      "id": "trending_now",
+      "name": "Trending Now",
+      "items": [
+        {
+          "id": "movie_001",
+          "title": "Big Buck Bunny",
+          "description": "A public sample film for testing video playback.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4"
+        },
+        {
+          "id": "movie_002",
+          "title": "Elephants Dream",
+          "description": "A sample animation used to demonstrate streaming playback.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_2MB.mp4"
+        },
+        {
+          "id": "movie_003",
+          "title": "For Bigger Escapes",
+          "description": "A public demo clip for testing player controls.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+        },
+        {
+          "id": "movie_004",
+          "title": "For Bigger Fun",
+          "description": "A sample video for testing playback and audio behavior.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4"
+        },
+        {
+          "id": "movie_005",
+          "title": "For Bigger Joyrides",
+          "description": "A demo stream for checking seek and playback progress.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_2MB.mp4"
+        },
+        {
+          "id": "movie_006",
+          "title": "For Bigger Meltdowns",
+          "description": "A public sample clip for testing the video player.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1518929458119-e5bf444c30f4?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1518929458119-e5bf444c30f4?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+        }
+      ]
+    },
+    {
+      "id": "recommended_for_you",
+      "name": "Recommended for You",
+      "items": [
+        {
+          "id": "movie_007",
+          "title": "Sintel",
+          "description": "A public sample film for testing video playback.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4"
+        },
+        {
+          "id": "movie_008",
+          "title": "Tears of Steel",
+          "description": "A sample animation used to demonstrate streaming playback.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_2MB.mp4"
+        },
+        {
+          "id": "movie_009",
+          "title": "Subaru Outback",
+          "description": "A public demo clip for testing player controls.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+        },
+        {
+          "id": "movie_010",
+          "title": "We Are Going on Bullrun",
+          "description": "A sample video for testing playback and audio behavior.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4"
+        },
+        {
+          "id": "movie_011",
+          "title": "What Car Can You Get",
+          "description": "A demo stream for checking seek and playback progress.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_2MB.mp4"
+        },
+        {
+          "id": "movie_012",
+          "title": "Volkswagen GTI Review",
+          "description": "A public sample clip for testing the video player.",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1518929458119-e5bf444c30f4?auto=format&fit=crop&w=700&q=80",
+          "bannerUrl": "https://images.unsplash.com/photo-1518929458119-e5bf444c30f4?auto=format&fit=crop&w=1600&q=80",
+          "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+        }
+      ]
+    }
+  ]
+}

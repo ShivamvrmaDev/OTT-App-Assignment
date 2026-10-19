@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.shivam.ottvideoplayer.presentation.ui.frgaments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_itemDetailsFrag"
+            app:destination="@id/itemDetailsFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemDetailsFrag"
+        android:name="com.shivam.ottvideoplayer.presentation.ui.frgaments.ItemDetailsFrag"
+        android:label="fragment_item_details"
+        tools:layout="@layout/fragment_item_details" >
+        <action
+            android:id="@+id/action_itemDetailsFrag_to_videoPlayerFrag"
+            app:destination="@id/videoPlayerFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoPlayerFrag"
+        android:name="com.shivam.ottvideoplayer.presentation.ui.frgaments.VideoPlayerFrag"
+        android:label="fragment_video_player"
+        tools:layout="@layout/fragment_video_player" />
+</navigation>
