@@ -25,14 +25,11 @@ You can download and test the pre-compiled Debug APK directly from this reposito
   - Configured with `DefaultHttpDataSource.Factory` User-Agent headers to prevent HTTP 403 network errors.
 - **Player Events & Analytics Pipeline**:
   - Full separation of concerns for tracking player events (`Player` ➔ `PlayerEventHandler` ➔ `ViewModel` ➔ `AnalyticsRepository` ➔ Logcat).
-  - Captures and logs:
+  - Captures and logs 5 key player events:
     - `PLAYER_READY`
     - `PLAYER_STARTED`
     - `PLAYER_PAUSED`
     - `PLAYER_SEEKED`
-    - `BUFFERING_STARTED`
-    - `BUFFERING_ENDED`
-    - `PLAYER_COMPLETED`
     - `PLAYER_ERROR`
 
 ---
@@ -139,7 +136,7 @@ com.shivam.ottvideoplayer/
 Player event tracking is decoupled from Fragments using a clean **event-driven pipeline**:
 
 1. **`PlayerEventHandler`**: Implements `Player.Listener` on Media3 ExoPlayer. It monitors playback state changes, pause/play toggles, seek discontinuities, buffering, and errors.
-2. **`PlayerEvent`**: Sealed class representing domain player events (`PlayerReady`, `PlaybackStarted`, `PlaybackPaused`, `SeekPerformed`, `BufferingStarted`, `BufferingEnded`, `PlaybackCompleted`, `PlaybackError`).
+2. **`PlayerEvent`**: Sealed class representing domain player events (`PlayerReady`, `PlaybackStarted`, `PlaybackPaused`, `SeekPerformed`, `PlaybackError`).
 3. **`VideoPlayerViewModel`**: Receives `PlayerEvent` items and delegates them to `LogPlayerEventUseCase`.
 4. **`AnalyticsRepository` (`AnalyticsRepoImpl`)**: Formats and logs the event cleanly to Logcat (`[PLAYER_EVENT_ANALYTICS] -> PLAYER_STARTED`).
 
